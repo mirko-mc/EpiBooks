@@ -6,10 +6,10 @@ import { useState } from "react";
 export const Welcome = () => {
   const [open, setOpen] = useState(false);
   const [lCol, setLcol] = useState(12);
-  function showHideCart(){
+  function showHideCart() {
     setOpen(!open);
     console.log(open);
-    setLcol(open===true?12:9);
+    setLcol(open === false ? 9 : 12);
   }
   return (
     <main>

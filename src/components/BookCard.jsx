@@ -8,7 +8,9 @@ export const BookCard = ({ book }) => {
         <Card.Body>
           <Card.Title className="text-truncate">{book.title}</Card.Title>
           <Card.Text>{parseFloat(book.price).toFixed(2)}€</Card.Text>
-          <Button variant="primary">Acquista</Button>
+          <Button variant="primary"><span class="material-symbols-outlined">
+add_shopping_cart
+</span></Button>
         </Card.Body>
       </Card>
     </Col>

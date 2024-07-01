@@ -10,9 +10,9 @@ function CartCard() {
         <Card.Body>
           <Card.Title>TITOLO LIBRO</Card.Title>
           <Card.Text>PREZZO LIBRO</Card.Text>
-          <Button variant="primary"><span className="material-symbols-outlined">
-            delete
-          </span></Button>
+          <Button variant="primary"><span class="material-symbols-outlined">
+remove_shopping_cart
+</span></Button>
         </Card.Body>
       </Col>
     </Card>

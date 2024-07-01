@@ -5,8 +5,14 @@ function Cart() {
 
     return (
         <>
-            <Button variant='primary'>Svuota carello</Button>
-            <p>TOTALE_COSTO_CARRELLO</p>
+            <span>TOTALE_COSTO_CARRELLO</span>
+            <Button variant='primary'>Svuota <span class="material-symbols-outlined">
+                shopping_cart_off
+            </span></Button>
+            <Button variant='primary'><span class="material-symbols-outlined">
+                shopping_cart_checkout
+            </span></Button>
+            <CartCard />
             <CartCard />
         </>
     );
