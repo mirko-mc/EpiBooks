@@ -3,7 +3,7 @@ import { AllTheBooks } from "./AllTheBooks";
 import { useState } from "react";
 
 export const MyNav = () => {
-  let [genre, setGenre] = useState("fantasy");
+  const [genre, setGenre] = useState("fantasy");
   function handleClick(gender){
     console.log("HANDLECLICK => genre\n",genre);
     console.log("HANDLECLICK => gender\n",gender);
@@ -23,11 +23,11 @@ export const MyNav = () => {
               <Nav.Link href="#">About</Nav.Link>
               <Nav.Link href="#">Browse</Nav.Link>
               <NavDropdown title="Genre" id="genre">
-                {/* <NavDropdown.Item href="#" onClick={() => AllTheBooks("fantasy")}>Fantasy</NavDropdown.Item> */}
-                <NavDropdown.Item href="#" onClick={handleClick("history")}>History</NavDropdown.Item>
-                {/* <NavDropdown.Item href="#" onClick={() => AllTheBooks("horror")}>Horror</NavDropdown.Item>
+                <NavDropdown.Item href="#" onClick={() => AllTheBooks("fantasy")}>Fantasy</NavDropdown.Item>
+                <NavDropdown.Item href="#" onClick={() => handleClick("history")}>History</NavDropdown.Item>
+                <NavDropdown.Item href="#" onClick={() => handleClick("horror")}>Horror</NavDropdown.Item>
                 <NavDropdown.Item href="#" onClick={() => AllTheBooks("romance")}>Romance</NavDropdown.Item>
-                <NavDropdown.Item href="#" onClick={() => AllTheBooks("scifi")}>Scifi</NavDropdown.Item> */}
+                <NavDropdown.Item href="#" onClick={() => AllTheBooks("scifi")}>Scifi</NavDropdown.Item>
               </NavDropdown>
             </Nav>
           </Navbar.Collapse>
