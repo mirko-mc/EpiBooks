@@ -1,7 +1,7 @@
 import { Alert, Col, Container, Row } from "react-bootstrap";
 import { AllTheBooks } from "./AllTheBooks";
 
-export const Welcome = () => {
+export const Welcome = ({ books }) => {
   return (
     <main>
       <Alert variant="primary" dismissible>
@@ -16,7 +16,7 @@ export const Welcome = () => {
           </Col>
         </Row>
         <Row>
-          <AllTheBooks />
+          <AllTheBooks books={books} />
         </Row>
       </Container>
     </main>
