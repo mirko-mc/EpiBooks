@@ -1,6 +1,7 @@
 import { Container, Nav, NavDropdown, Navbar } from "react-bootstrap";
-
+/** il componente MYNAV riceve come props la funzione per impostare il genere scelto dall'utente */
 export const MyNav = ({ setGenre }) => {
+  /** al click dell'utente imposta nello stato GENRE il genere scelto dall'utente attraverso la funzione handleGenreChange utilizzata tramite setGenre */
   function handleClick(gender) {
     setGenre(gender);
   }
@@ -17,6 +18,7 @@ export const MyNav = ({ setGenre }) => {
               <NavDropdown title="Genre" id="genre">
                 <NavDropdown.Item
                   href="#"
+                  /** richiamo la funzione per impostare il genere scelto dall'utente */
                   onClick={() => handleClick("fantasy")}
                 >
                   Fantasy

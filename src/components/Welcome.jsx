@@ -1,6 +1,6 @@
 import { Alert, Col, Container, Row } from "react-bootstrap";
 import { AllTheBooks } from "./AllTheBooks";
-
+/* il componente WELCOME riceve come props l'oggetto contenente i dati da renderizzare */
 export const Welcome = ({ books }) => {
   return (
     <main>
@@ -16,6 +16,7 @@ export const Welcome = ({ books }) => {
           </Col>
         </Row>
         <Row>
+          {/** al componente ALLTHEBOOKS gli passo l'oggetto contenente i dati da renderizzare */}
           <AllTheBooks books={books} />
         </Row>
       </Container>
