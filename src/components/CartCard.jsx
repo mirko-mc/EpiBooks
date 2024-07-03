@@ -1,18 +1,18 @@
 import { Button, Card, Col, Row } from 'react-bootstrap';
 
-function CartCard() {
+function CartCard({ addCart }) {
   return (
     <Card>
       <Col md={4}>
-        <Card.Img variant="top" src="holder.js/100px180" />
+        <Card.Img variant="top" src={addCart.img} />
       </Col>
       <Col md={8}>
         <Card.Body>
-          <Card.Title>TITOLO LIBRO</Card.Title>
-          <Card.Text>PREZZO LIBRO</Card.Text>
-          <Button variant="primary"><span class="material-symbols-outlined">
-remove_shopping_cart
-</span></Button>
+          <Card.Title>{addCart.title}</Card.Title>
+          <Card.Text>{addCart.price}</Card.Text>
+          <Button variant="primary"><span className="material-symbols-outlined">
+            remove_shopping_cart
+          </span></Button>
         </Card.Body>
       </Col>
     </Card>

@@ -1,9 +1,9 @@
 import fantasy from "../data/fantasy.json";
-import { BookCard } from "./BookCard";
+import { SingleBook } from "./SingleBook";
 
-export const AllTheBooks = () => {
+export const AllTheBooks = ({ setAddCart }) => {
   // console.log(fantasy);
-  fantasy = fantasy.slice(0,24);
+  fantasy = fantasy.slice(0, 6);
   // console.log(fantasy.length);
-  return fantasy.map((b) => <BookCard key={b.asin} book={b} />);
+  return fantasy.map((b) => <SingleBook setAddCard={setAddCart} key={b.asin} book={b} />);
 };

@@ -6,9 +6,9 @@ import { useState } from "react";
 export const Welcome = () => {
   const [open, setOpen] = useState(false);
   const [lCol, setLcol] = useState(12);
+  const [addCart, setAddCart] = useState("");
   function showHideCart() {
     setOpen(!open);
-    console.log(open);
     setLcol(open === false ? 9 : 12);
   }
   return (
@@ -26,7 +26,7 @@ export const Welcome = () => {
         </Row>
         <Row>
           <Button
-            onClick={() => showHideCart()}
+            onClick={showHideCart}
             aria-controls="cart"
             aria-expanded={open}
           >
@@ -36,11 +36,11 @@ export const Welcome = () => {
         <Row>
 
           <Col md={lCol} className="d-flex flex-wrap">
-            <AllTheBooks />
+            <AllTheBooks setAddCart={setAddCart}/>
           </Col>
           <Collapse in={open}>
             <Col id="cart" md={3}>
-              <Cart />
+              {/* <Cart addCart={addCart}/> */}
             </Col>
           </Collapse>
 
