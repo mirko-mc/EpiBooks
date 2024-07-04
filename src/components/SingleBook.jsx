@@ -5,7 +5,7 @@ export const SingleBook = ({ book, addCart, setAddCart }) => {
   // console.log(book);
   // console.log(setAddCart);
   const handleClick = (book) => {
-    setAddCart([...addCart, addCart.push(book)]);
+    setAddCart([...addCart, book]);
     // console.log(addCart);
     // console.log(book);
   };

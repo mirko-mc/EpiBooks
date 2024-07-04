@@ -2,7 +2,7 @@ import Button from "react-bootstrap/Button";
 import CartCard from "./CartCard";
 
 function Cart({ addCart }) {
-  // console.log("ADDCART", addCart);
+  console.log("ADDCART", addCart);
   return (
     <>
       <span>TOTALE_COSTO_CARRELLO</span>
