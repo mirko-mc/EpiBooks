@@ -20,3 +20,40 @@ CONTINUIAMO A LAVORARE SU EPIBOOKS!
   EXTRA
   Crea lo stato all'interno di SingleBook e inserisci una proprietà booleana di nome selected.
   Cliccando sulla copertina di un libro, la proprietà selected deve cambiare valore. Se selected ha valore true, la copertina del libro deve aggiungere un bordo rosso.
+
+
+CONTINUIAMO A LAVORARE SU EPIBOOKS!
+  - Se ancora non lo hai fatto, crea lo stato all'interno di SingleBook e inserisci una proprietà booleana di nome selected.
+    Cliccando sulla copertina di un libro, la proprietà selected deve cambiare valore.
+    Se selected ha valore true, la copertina del libro deve aggiungere un bordo rosso.
+  - Inserisci le operazioni GET e POST in modo che l'utente possa leggere, e creare recensioni sui libri.
+    Troverai le informazioni sull'API nelle slide successive alle Task.
+  
+  TASKS:
+    1. Crea un componente CommentArea e incorporalo nel componente SingleBook.
+       Quando un utente clicca su un SingleBook, il componente CommentArea deve venire renderizzato (suggerimento: puoi usare l'operatore && e la proprietà "selected").
+    2. CommentArea deve eseguire una fetch (useEffect) e salvare tutte le recensioni del libro all'interno del suo stato.
+       Deve inoltre renderizzare altri due componenti dentro di sé: CommentList e AddComment.
+    3. CommentsList riceverà la lista di recensioni da CommentArea con una prop, e dovrà renderizzare la lista utilizzando un componente SingleComment.
+    4. AddComment conterrà un form per raccogliere il testo della recensione e la valutazione da 1 a 5.
+       Una volta raccolti i dati tramite un pulsante (onClick!) verrà effettuata una chiamata POST per inviare la recensione alle API.
+  EXTRA (FACOLTATIVI):
+    1. Inserisci la possibilità di eseguire un'operazione di DELETE e PUT.
+    2. Inserisci spinner e messaggi d'errore.
+  
+  API E AUTENTICAZIONE
+    Il tuo endpoint per tutto il CRUD si trova su:
+    GET https://striveschool-api.herokuapp.com/api/books/:asin/comments/
+    POST https://striveschool-api.herokuapp.com/api/comments/:elementId con il body che trovi nella prossima slide.
+    PUT e DELETE https://striveschool-api.herokuapp.com/api/comments/:elementId
+    Ciò significa che puoi effettuare operazioni di GET, DELETE, POST e PUT.
+
+    !! IMPORTANTE !!
+    Per utilizzare l'endpoint avrai bisogno di un header di autenticazione. Puoi ottenerne uno, insieme ad un esempio su come implementarlo, su https://strive.school/studentlogin
+  
+  API - STRUTTURA DI UN COMMENTO + AVVERTENZA!
+    {
+      "comment": string,    // testo della recensione
+      "rate": string,       // valore compreso tra 1 e 5
+      "elementId": string   // l'identificativo ASIN del libro
+    }
