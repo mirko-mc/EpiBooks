@@ -1,6 +1,7 @@
 import { Button, Card, Col, Row } from 'react-bootstrap';
 
 function CartCard({ addCart }) {
+  console.log(addCart);
   return (
     <Card>
       <Col md={4}>

@@ -6,7 +6,7 @@ import { useState } from "react";
 export const Welcome = () => {
   const [open, setOpen] = useState(false);
   const [lCol, setLcol] = useState(12);
-  const [addCart, setAddCart] = useState("");
+  const [addCart, setAddCart] = useState([]);
   function showHideCart() {
     setOpen(!open);
     setLcol(open === false ? 9 : 12);
@@ -34,16 +34,14 @@ export const Welcome = () => {
           </Button>
         </Row>
         <Row>
-
           <Col md={lCol} className="d-flex flex-wrap">
-            <AllTheBooks setAddCart={setAddCart}/>
+            <AllTheBooks setAddCart={setAddCart} addCart={addCart} />
           </Col>
           <Collapse in={open}>
             <Col id="cart" md={3}>
-              {/* <Cart addCart={addCart}/> */}
+              <Cart addCart={addCart} />
             </Col>
           </Collapse>
-
         </Row>
       </Container>
     </main>

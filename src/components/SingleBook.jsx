@@ -1,10 +1,14 @@
 import { Button, Col, Card } from "react-bootstrap";
-export const SingleBook = ({ book }) => {
-  console.log(book);
+import { useState } from "react";
+
+export const SingleBook = ({ book, addCart, setAddCart }) => {
+  // console.log(book);
   // console.log(setAddCart);
   const handleClick = (book) => {
-    // setAddCart(book)
-  }
+    setAddCart([...addCart, addCart.push(book)]);
+    // console.log(addCart);
+    // console.log(book);
+  };
   return (
     <Col md={2}>
       <Card className="mb-3">
@@ -12,9 +16,9 @@ export const SingleBook = ({ book }) => {
         <Card.Body>
           <Card.Title className="text-truncate">{book.title}</Card.Title>
           <Card.Text>{parseFloat(book.price).toFixed(2)}€</Card.Text>
-          <Button variant="primary" onClick={() => handleClick(book)}><span className="material-symbols-outlined">
-            add_shopping_cart
-          </span></Button>
+          <Button variant="primary" onClick={() => handleClick(book)}>
+            <span className="material-symbols-outlined">add_shopping_cart</span>
+          </Button>
         </Card.Body>
       </Card>
     </Col>
