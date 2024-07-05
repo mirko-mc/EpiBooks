@@ -1,13 +1,9 @@
 import { Button, Col, Card } from "react-bootstrap";
-import { useState } from "react";
 
-export const SingleBook = ({ book, addCart, setAddCart }) => {
-  // console.log(book);
-  // console.log(setAddCart);
+export const SingleBook = ({showHideCart, book, addCart, setAddCart }) => {
   const handleClick = (book) => {
     setAddCart([...addCart, book]);
-    // console.log(addCart);
-    // console.log(book);
+    showHideCart();
   };
   return (
     <Col md={2}>

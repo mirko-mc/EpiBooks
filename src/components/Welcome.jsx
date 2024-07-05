@@ -8,8 +8,10 @@ export const Welcome = () => {
   const [lCol, setLcol] = useState(12);
   const [addCart, setAddCart] = useState([]);
   function showHideCart() {
-    setOpen(!open);
-    setLcol(open === false ? 9 : 12);
+    if (addCart.length === 0) {
+      setOpen(!open);
+      setLcol(open === false ? 9 : 12);
+    }
   }
   return (
     <main>
@@ -35,11 +37,11 @@ export const Welcome = () => {
         </Row>
         <Row>
           <Col md={lCol} className="d-flex flex-wrap">
-            <AllTheBooks setAddCart={setAddCart} addCart={addCart} />
+            <AllTheBooks setAddCart={setAddCart} addCart={addCart} showHideCart={showHideCart} />
           </Col>
           <Collapse in={open}>
             <Col id="cart" md={3}>
-              <Cart addCart={addCart} />
+              <Cart addCart={addCart} setAddCart={setAddCart}/>
             </Col>
           </Collapse>
         </Row>

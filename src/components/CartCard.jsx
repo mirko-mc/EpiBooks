@@ -1,17 +1,20 @@
-import { Button, Card, Col, Row } from 'react-bootstrap';
+import { Button, Card, Col } from 'react-bootstrap';
 
-function CartCard({ addCart }) {
-  console.log(addCart);
+function CartCard({ addCart, setAddCart }) {
+  // console.log(addCart);
+  const removeFromCart = (asin)=>{
+console.log(asin);
+  }
   return (
-    <Card>
+    <Card className='flex-row'>
       <Col md={4}>
         <Card.Img variant="top" src={addCart.img} />
       </Col>
       <Col md={8}>
         <Card.Body>
-          <Card.Title>{addCart.title}</Card.Title>
+          <Card.Title className='text-truncate'>{addCart.title}</Card.Title>
           <Card.Text>{addCart.price}</Card.Text>
-          <Button variant="primary"><span className="material-symbols-outlined">
+          <Button variant="primary" onClick={()=>removeFromCart(addCart.asin)}><span className="material-symbols-outlined">
             remove_shopping_cart
           </span></Button>
         </Card.Body>

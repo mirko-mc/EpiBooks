@@ -1,12 +1,12 @@
 import Button from "react-bootstrap/Button";
 import CartCard from "./CartCard";
 
-function Cart({ addCart }) {
-  console.log("ADDCART", addCart);
+function Cart({ addCart, setAddCart }) {
+  // console.log("ADDCART", addCart);
   return (
     <>
       <span>TOTALE_COSTO_CARRELLO</span>
-      <Button variant="primary">
+      <Button variant="primary" onClick={() => setAddCart([])}>
         Svuota{" "}
         <span className="material-symbols-outlined">shopping_cart_off</span>
       </Button>
@@ -20,7 +20,7 @@ function Cart({ addCart }) {
         <CartCard
           key={"cart" + book.asin}
           addCart={book}
-          //   book={book}
+          setAddCart={setAddCart}
         />
       ))}
       {/* <CartCard addCart={addCart} /> */}
