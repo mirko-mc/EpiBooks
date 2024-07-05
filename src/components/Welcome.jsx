@@ -27,15 +27,6 @@ export const Welcome = () => {
           </Col>
         </Row>
         <Row>
-          <Button
-            onClick={showHideCart}
-            aria-controls="cart"
-            aria-expanded={open}
-          >
-            click
-          </Button>
-        </Row>
-        <Row>
           <Col md={lCol} className="d-flex flex-wrap">
             <AllTheBooks setAddCart={setAddCart} addCart={addCart} showHideCart={showHideCart} />
           </Col>
