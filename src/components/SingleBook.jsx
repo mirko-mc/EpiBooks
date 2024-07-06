@@ -10,7 +10,7 @@ export const SingleBook = ({ book }) => {
   };
   // console.log(book);
   return (
-    <Col md={2}>
+    <Col md={3}>
       <Card className={selected ? "mb-3 redBorder" : "mb-3 "}>
         <Card.Img
           variant="top"
