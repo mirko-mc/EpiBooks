@@ -48,8 +48,8 @@ export const handleSaveComment = (
     },
   })
     .then((res) => {
-      setUpdateComments(false);
-      if (!res.ok) throw new Error(res.status);
+      if (res.ok) setUpdateComments(true);
+      else throw new Error(res.status);
       return res.json();
     })
     .catch((err) =>

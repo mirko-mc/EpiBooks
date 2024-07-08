@@ -13,8 +13,6 @@ export const CommentArea = ({ asin }) => {
   const [delError, setDelError] = useState(false);
   const [updateComments, setUpdateComments] = useState(true);
   useEffect(() => {
-    console.log("prima",comments.length);
-    console.log("prima", updateComments);
     updateComments &&
       loadComments(
         asin,
@@ -23,8 +21,6 @@ export const CommentArea = ({ asin }) => {
         setLoadError,
         setUpdateComments
       );
-    console.log("dopo",comments.length);
-    console.log("dopo", updateComments);
   }, [updateComments]);
 
   return (

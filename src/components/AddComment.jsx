@@ -42,15 +42,14 @@ export const AddComment = ({ asin, setUpdateComments }) => {
       <Button
         className="w-25"
         variant="primary"
-        onClick={() => {
-          setUpdateComments(true);
-          return handleSaveComment(
+        onClick={() =>
+          handleSaveComment(
             formValue,
             setIsSaving,
             setIsError,
             setUpdateComments
-          );
-        }}
+          )
+        }
       >
         {isSaving ? <Loading /> : "💾"}
       </Button>
