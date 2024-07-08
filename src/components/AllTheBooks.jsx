@@ -11,16 +11,19 @@ export const AllTheBooks = () => {
   const [resultSearch, setResultSearch] = useState(fantasy);
   const handleSearch = (event) => {
     setSearch(event.target.value);
-    const resultsTemp = fantasy.filter((book) =>
-      book.title.toLowerCase().includes(event.target.value.toLowerCase())||book.asin.includes(event.target.value));
+    const resultsTemp = fantasy.filter(
+      (book) =>
+        book.title.toLowerCase().includes(event.target.value.toLowerCase()) ||
+        book.asin.includes(event.target.value)
+    );
     setResultSearch(resultsTemp);
   };
   return (
     <>
       <InputGroup className="mb-3">
         <Form.Control
-          placeholder="Recipient's username"
-          aria-label="Recipient's username"
+          placeholder="Search your favourite book"
+          aria-label="Search your favourite book"
           aria-describedby="basic-addon2"
           onChange={handleSearch}
         />
