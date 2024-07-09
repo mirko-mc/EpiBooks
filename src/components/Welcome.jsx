@@ -15,9 +15,6 @@ export const Welcome = () => {
             <h1>FAGIOLO by Sirena Impicciona</h1>
           </Col>
         </Row>
-        <Row>
-          <AllTheBooks />
-        </Row>
       </Container>
     </main>
   );

@@ -57,3 +57,19 @@ CONTINUIAMO A LAVORARE SU EPIBOOKS!
       "rate": string,       // valore compreso tra 1 e 5
       "elementId": string   // l'identificativo ASIN del libro
     }
+
+CONTINUIAMO A LAVORARE SU EPIBOOKS!
+  Il tuo compito per oggi è mettere in pratica la state elevation.
+  Sposta il campo di ricerca all'interno del componente MyNavbar; dovrà sempre essere utilizzato per filtrare i libri della lista all'interno di AllTheBooks.
+  
+  Nelle prossime slide troverai le istruzioni passo per passo!
+
+  TASKS: 
+    1. E' necessario spostare l'input di ricerca dal componente AllTheBooks a MyNav, in modo da poter filtrare i libri comodamente dalla barra di navigazione.
+    2. Attenzione però: il valore inserito nel campo di ricerca non può essere parte dello stato di MyNav, perché in questo modo risulta irraggiungibile dal componente AllTheBooks. Fisicamente l'input deve trovarsi dentro MyNav, ma la logica con cui interagisce (in lettura e scrittura) deve trovarsi in un componente superiore: App.
+    3. Una volta fatto interagire l'input di ricerca in MyNav con lo stato di App (sarà necessario passare da App a MyNav delle props, in modo da poter leggere lo stato per riempire il valore dell'input ma anche per cambiare lo stato di App ogni volta che viene inserito un carattere nell'input), il più è fatto: ora sempre da App puoi passare il valore dell'input anche al componente AllTheBooks.
+    4. Usa questa prop in AllTheBooks per filtrare i libri. Dovresti già avere questa funzionalità, dovrai solo cambiare l'origine della query, che non sarà più salvata nel suo stato ma proverrà dalle props.
+
+  EXTRA (facoltativo):
+    Utilizza React.Context per condividere con l'intera applicazione una proprietà 'theme': il suo valore può essere light o dark, e deve influenzare qualche proprietà visiva dei componenti principali (MyNav, BookList, SingleBook etc.).
+    Fornisci anche un modo per cambiare valore alla proprietà theme (da light a dark e viceversa) e verifica che l'applicazione riceva il nuovo valore alla modifica dello stesso.

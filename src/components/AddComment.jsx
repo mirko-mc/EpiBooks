@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Button, Form } from "react-bootstrap";
 import { handleSaveComment } from "../data/Fetch";
 import { Loading } from "./Loading";
@@ -10,7 +10,15 @@ export const AddComment = ({ asin, setUpdateComments }) => {
     elementId: asin,
   });
   const [isSaving, setIsSaving] = useState(false);
+  const initialFormState = {
+    rate: "",
+    comment: "",
+    elementId: asin,
+  };
   const [isError, setIsError] = useState("");
+  useEffect(() => {
+    !isSaving && setFormValue(initialFormState);
+  }, [isSaving]);
   const handleChange = (event) => {
     setFormValue({ ...formValue, [event.target.name]: event.target.value });
   };
@@ -24,6 +32,7 @@ export const AddComment = ({ asin, setUpdateComments }) => {
           placeholder="rate"
           name="rate"
           onChange={handleChange}
+          value={formValue.rate}
         />
       </Form.Group>
       <Form.Group
@@ -37,6 +46,7 @@ export const AddComment = ({ asin, setUpdateComments }) => {
           rows={3}
           name="comment"
           onChange={handleChange}
+          value={formValue.comment}
         />
       </Form.Group>
       <Button

@@ -48,8 +48,10 @@ export const handleSaveComment = (
     },
   })
     .then((res) => {
-      if (res.ok) setUpdateComments(true);
-      else throw new Error(res.status);
+      if (res.ok) {
+        alert("Comment saved");
+        setUpdateComments(true);
+      } else throw new Error(res.status);
       return res.json();
     })
     .catch((err) =>
@@ -72,6 +74,7 @@ export const editComment = (asin, edit, setIsEditing, setEditError) => {
     },
   })
     .then((res) => {
+      res.ok && alert("Comment edited");
       if (!res.ok) throw new Error(res.status);
       return res.json();
     })
@@ -98,9 +101,9 @@ export const delComment = (
     },
   })
     .then((res) => {
-      setUpdateComments(false);
+      res.ok && alert("Comment deleted");
       if (!res.ok) throw new Error(res.status);
-      return res.json();
+      return setUpdateComments(false);
     })
     .catch((err) =>
       err.message === "400"
