@@ -21,8 +21,11 @@ export const SingleComment = ({
     setEdit({ ...edit, [event.target.name]: event.target.value });
   };
   const handleSaveEditComment = (asin, setIsEditing) => {
-    editComment(asin, edit, setIsEditing, setEditError);
-    setShowSave(true);
+    if (parseInt(edit.rate) < 0 || parseInt(edit.rate) > 5) setEditError(true);
+    else {
+      editComment(asin, edit, setIsEditing, setEditError);
+      setShowSave(true);
+    }
   };
   return (
     <tr>
