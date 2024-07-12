@@ -1,9 +1,15 @@
+import { Col, Row } from "react-bootstrap";
 import fantasy from "../data/fantasy.json";
 import { SingleBook } from "./SingleBook";
 // import { InputGroup, Form } from "react-bootstrap";
 import { useEffect, useState } from "react";
+import { CommentArea } from "./CommentArea";
 
 export const AllTheBooks = ({ search }) => {
+  const [bookSelected, setBookSelected] = useState(null);
+  const handleClickSelected = (asin) => {
+    bookSelected === asin ? setBookSelected(null) : setBookSelected(asin);
+  };
   // console.log(fantasy);
   fantasy = fantasy.slice(0, 6);
   // console.log(fantasy.length);
@@ -19,17 +25,21 @@ export const AllTheBooks = ({ search }) => {
   }, [search]);
   return (
     <>
-      {/* <InputGroup className="mb-3">
-        <Form.Control
-          placeholder="Search your favourite book"
-          aria-label="Search your favourite book"
-          aria-describedby="basic-addon2"
-          onChange={handleSearch}
-        />
-      </InputGroup> */}
-      {resultSearch.map((b) => (
-        <SingleBook key={b.asin} book={b} />
-      ))}
+      <Row>
+        <Col md={9}>
+          {resultSearch.map((b) => (
+            <SingleBook
+              key={b.asin}
+              book={b}
+              handleClickSelected={handleClickSelected}
+              bookSelected={bookSelected}
+            />
+          ))}
+        </Col>
+        <Col md={3}>
+          <CommentArea asin={bookSelected} />
+        </Col>
+      </Row>
     </>
   );
 };

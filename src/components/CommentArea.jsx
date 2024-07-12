@@ -14,6 +14,7 @@ export const CommentArea = ({ asin }) => {
   const [updateComments, setUpdateComments] = useState(true);
   useEffect(() => {
     updateComments &&
+      asin &&
       loadComments(
         asin,
         setComments,
@@ -21,7 +22,7 @@ export const CommentArea = ({ asin }) => {
         setLoadError,
         setUpdateComments
       );
-  }, [updateComments]);
+  }, [asin, updateComments]);
 
   return (
     <>
