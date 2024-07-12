@@ -28,48 +28,50 @@ export const SingleComment = ({
     }
   };
   return (
-    <tr>
-      <td>{i}</td>
-      <td>{comment.author}</td>
-      <td>
-        <Form.Control
-          type="text"
-          name="rate"
-          value={edit.rate}
-          onChange={handleChangeComment}
-          disabled={showSave}
-        />
-      </td>
-      <td>
-        <Form.Control
-          type="text"
-          name="comment"
-          value={edit.comment}
-          onChange={handleChangeComment}
-          disabled={showSave}
-        />
-      </td>
-      <td className="text-center">
-        <Button hidden={!showSave} onClick={() => setShowSave(false)}>
-          {isEditing ? <Loading /> : "🖊"}
-        </Button>
-        <Button
-          hidden={showSave}
-          onClick={() => handleSaveEditComment(comment._id, setIsEditing)}
-        >
-          {isEditing ? <Loading /> : "💾"}
-        </Button>
-      </td>
-      <td className="text-center">
-        <Button
-          onClick={() => {
-            setUpdateComments(true);
-            return delComment(comment._id, setIsDeleting, setUpdateComments);
-          }}
-        >
-          {isDeleting ? <Loading /> : "🗑"}
-        </Button>
-      </td>
-    </tr>
+    <>
+      {/* <tr>
+        <td>{i}</td>
+        <td>{comment.author}</td>
+        <td> */}
+          <Form.Control
+            type="text"
+            name="rate"
+            value={edit.rate}
+            onChange={handleChangeComment}
+            disabled={showSave}
+          />
+        {/* </td>
+        <td> */}
+          <Form.Control
+            type="text"
+            name="comment"
+            value={edit.comment}
+            onChange={handleChangeComment}
+            disabled={showSave}
+          />
+        {/* </td>
+        <td className="text-center"> */}
+          <Button hidden={!showSave} onClick={() => setShowSave(false)}>
+            {isEditing ? <Loading /> : "🖊"}
+          </Button>
+          <Button
+            hidden={showSave}
+            onClick={() => handleSaveEditComment(comment._id, setIsEditing)}
+          >
+            {isEditing ? <Loading /> : "💾"}
+          </Button>
+        {/* </td>
+        <td className="text-center"> */}
+          <Button
+            onClick={() => {
+              setUpdateComments(true);
+              return delComment(comment._id, setIsDeleting, setUpdateComments);
+            }}
+          >
+            {isDeleting ? <Loading /> : "🗑"}
+          </Button>
+        {/* </td>
+      </tr> */}
+    </>
   );
 };

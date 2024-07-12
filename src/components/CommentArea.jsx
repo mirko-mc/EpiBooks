@@ -11,10 +11,9 @@ export const CommentArea = ({ asin }) => {
   const [loadError, setLoadError] = useState(false);
   const [editError, setEditError] = useState(false);
   const [delError, setDelError] = useState(false);
-  const [updateComments, setUpdateComments] = useState(true);
+  const [updateComments, setUpdateComments] = useState(false);
   useEffect(() => {
-    updateComments &&
-      asin &&
+    if (updateComments || asin)
       loadComments(
         asin,
         setComments,

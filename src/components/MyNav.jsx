@@ -6,31 +6,20 @@ export const MyNav = ({ setSearch }) => {
   const { theme, setTheme, useTheme } = useContext(ThemeContext);
   return (
     <header>
-      <Navbar expand="lg" className={useTheme("bg-dark", "bg-body-tertiary")}>
-        <Navbar.Brand
-          href="#"
-          className={useTheme("text-bg-dark ps-5", "text-bg-light ps-5")}
-        >
-          Home
-        </Navbar.Brand>
+      <Navbar
+        expand="lg"
+        className={useTheme("bg-dark", "bg-body-tertiary")}
+        data-bs-theme={theme}
+      >
+        <Navbar.Brand href="#">Home</Navbar.Brand>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse
           id="basic-navbar-nav"
           className="pe-5 align-items-baseline"
         >
           <Nav className="me-auto">
-            <Nav.Link
-              href="#"
-              className={useTheme("text-bg-dark", "text-bg-light")}
-            >
-              About
-            </Nav.Link>
-            <Nav.Link
-              href="#"
-              className={useTheme("text-bg-dark", "text-bg-light")}
-            >
-              Browse
-            </Nav.Link>
+            <Nav.Link href="#">About</Nav.Link>
+            <Nav.Link href="#">Browse</Nav.Link>
           </Nav>
           <InputGroup className="mb-3 w-50">
             <Form.Control

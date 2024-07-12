@@ -26,19 +26,23 @@ export const AllTheBooks = ({ search }) => {
   return (
     <>
       <Row>
-        <Col md={9}>
-          {resultSearch.map((b) => (
-            <SingleBook
-              key={b.asin}
-              book={b}
-              handleClickSelected={handleClickSelected}
-              bookSelected={bookSelected}
-            />
-          ))}
+        <Col>
+          <Row>
+            {resultSearch.map((b) => (
+              <SingleBook
+                key={b.asin}
+                book={b}
+                handleClickSelected={handleClickSelected}
+                bookSelected={bookSelected}
+              />
+            ))}
+          </Row>
         </Col>
-        <Col md={3}>
-          <CommentArea asin={bookSelected} />
-        </Col>
+        {bookSelected && (
+          <Col md={3}>
+            <CommentArea asin={bookSelected} />
+          </Col>
+        )}
       </Row>
     </>
   );
