@@ -1,12 +1,11 @@
-import { MyNav } from "./components/MyNav";
-import { MyFooter } from "./components/MyFooter";
+import { MyNav } from "./components/Header/MyNav";
+import { MyFooter } from "./components/Footer/MyFooter";
 import { Welcome } from "./components/Welcome";
-import { AllTheBooks } from "./components/AllTheBooks";
-import { Container, Row } from "react-bootstrap";
+import { AllTheBooks } from "./components/AllTheBooks/AllTheBooks";
+import { Col, Container, Row } from "react-bootstrap";
 import { useState } from "react";
 // import { ThemeContext } from "./context/Context";
 import { ThemeContextProvider } from "./context/ThemeContextProvider";
-import { CommentArea } from "./components/CommentArea";
 
 function App() {
   const [search, setSearch] = useState("");
@@ -14,16 +13,27 @@ function App() {
   return (
     <ThemeContextProvider>
       {/* <ThemeContext.Provider value={[theme, setTheme, useTheme]}> */}
-      <MyNav setSearch={setSearch} />
-      <Welcome />
-      <Container>
+      <header className="container-fluid">
         <Row>
-          <AllTheBooks search={search} />
-          <CommentArea />
+          <Col className="p-0">
+            <MyNav setSearch={setSearch} />
+          </Col>
         </Row>
-      </Container>
+      </header>
+      <main className="container">
+        <Row>
+          <Welcome />
+          <AllTheBooks search={search} />
+        </Row>
+      </main>
       {/* </ThemeContext.Provider> */}
-      <MyFooter />
+      <div className="container-fluid">
+        <Row>
+          <Col className="p-0">
+            <MyFooter />
+          </Col>
+        </Row>
+      </div>
     </ThemeContextProvider>
   );
 }

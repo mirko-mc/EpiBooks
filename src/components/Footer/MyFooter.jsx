@@ -1,7 +1,7 @@
 import { Col, Container, Row } from "react-bootstrap";
 import { useContext } from "react";
 // import { ThemeContext } from "../context/Context";
-import { ThemeContext } from "../context/ThemeContextProvider";
+import { ThemeContext } from "../../context/ThemeContextProvider";
 export const MyFooter = () => {
   const { useTheme } = useContext(ThemeContext);
   return (

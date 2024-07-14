@@ -1,6 +1,6 @@
 import { Button, Form } from "react-bootstrap";
-import { delComment, editComment } from "../data/Fetch";
-import { Loading } from "./Loading";
+import { delComment, editComment } from "../../data/Fetch";
+import { Loading } from "../Loading";
 import { useState } from "react";
 
 export const SingleComment = ({

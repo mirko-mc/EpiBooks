@@ -1,9 +1,9 @@
 import { useEffect, useState } from "react";
 import { CommentList } from "./CommentList";
 import { AddComment } from "./AddComment";
-import { loadComments } from "../data/Fetch";
-import { Loading } from "./Loading";
-import { AlertError } from "./AlertError";
+import { loadComments } from "../../data/Fetch";
+import { Loading } from "../Loading";
+import { AlertError } from "../AlertError";
 
 export const CommentArea = ({ asin }) => {
   const [comments, setComments] = useState([]);

@@ -3,7 +3,7 @@ import { Button, Col, Card } from "react-bootstrap";
 import "./SingleBook.css";
 // import { CommentArea } from "./CommentArea";
 // import { ThemeContext } from "../context/Context";
-import { ThemeContext } from "../context/ThemeContextProvider";
+import { ThemeContext } from "../../context/ThemeContextProvider";
 
 export const SingleBook = ({ book, handleClickSelected, bookSelected }) => {
   // const [selected, setSelected] = useState(false);

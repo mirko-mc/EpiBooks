@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react";
 import { Button, Form } from "react-bootstrap";
-import { handleSaveComment } from "../data/Fetch";
-import { Loading } from "./Loading";
-import { AlertError } from "./AlertError";
+import { handleSaveComment } from "../../data/Fetch";
+import { Loading } from "../Loading";
+import { AlertError } from "../AlertError";
 export const AddComment = ({ asin, setUpdateComments }) => {
   const [formValue, setFormValue] = useState({
     rate: "",
