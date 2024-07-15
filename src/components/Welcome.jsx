@@ -1,10 +1,7 @@
-import { Alert, Col, Container, Row } from "react-bootstrap";
-import { AllTheBooks } from "./AllTheBooks/AllTheBooks";
+import { Alert, Col, Row } from "react-bootstrap";
 
 export const Welcome = () => {
   return (
-    <>
-      <Container>
         <Row>
           <Alert variant="primary" dismissible>
             <Alert.Heading>
@@ -15,7 +12,5 @@ export const Welcome = () => {
             <h1>FAGIOLO by Sirena Impicciona</h1>
           </Col>
         </Row>
-      </Container>
-    </>
   );
 };

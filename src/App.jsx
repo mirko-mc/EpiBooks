@@ -2,7 +2,7 @@ import { MyNav } from "./components/Header/MyNav";
 import { MyFooter } from "./components/Footer/MyFooter";
 import { Welcome } from "./components/Welcome";
 import { AllTheBooks } from "./components/AllTheBooks/AllTheBooks";
-import { Col, Container, Row } from "react-bootstrap";
+import { Col, Row } from "react-bootstrap";
 import { useState } from "react";
 // import { ThemeContext } from "./context/Context";
 import { ThemeContextProvider } from "./context/ThemeContextProvider";

@@ -10,10 +10,7 @@ export const AllTheBooks = ({ search }) => {
   const handleClickSelected = (asin) => {
     bookSelected === asin ? setBookSelected(null) : setBookSelected(asin);
   };
-  // console.log(fantasy);
   fantasy = fantasy.slice(0, 6);
-  // console.log(fantasy.length);
-  // const [search, setSearch] = useState("");
   const [resultSearch, setResultSearch] = useState(fantasy);
   useEffect(() => {
     const resultsTemp = fantasy.filter(
@@ -25,7 +22,6 @@ export const AllTheBooks = ({ search }) => {
   }, [search]);
   return (
     <>
-      <Row>
         <Col>
           <Row>
             {resultSearch.map((b) => (
@@ -43,7 +39,6 @@ export const AllTheBooks = ({ search }) => {
             <CommentArea asin={bookSelected} />
           </Col>
         )}
-      </Row>
     </>
   );
 };

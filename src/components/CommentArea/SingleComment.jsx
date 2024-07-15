@@ -5,7 +5,6 @@ import { useState } from "react";
 
 export const SingleComment = ({
   comment,
-  i,
   setEditError,
   setUpdateComments,
 }) => {
@@ -29,10 +28,6 @@ export const SingleComment = ({
   };
   return (
     <>
-      {/* <tr>
-        <td>{i}</td>
-        <td>{comment.author}</td>
-        <td> */}
           <Form.Control
             type="text"
             name="rate"
@@ -40,8 +35,6 @@ export const SingleComment = ({
             onChange={handleChangeComment}
             disabled={showSave}
           />
-        {/* </td>
-        <td> */}
           <Form.Control
             type="text"
             name="comment"
@@ -49,8 +42,6 @@ export const SingleComment = ({
             onChange={handleChangeComment}
             disabled={showSave}
           />
-        {/* </td>
-        <td className="text-center"> */}
           <Button hidden={!showSave} onClick={() => setShowSave(false)}>
             {isEditing ? <Loading /> : "🖊"}
           </Button>
@@ -60,8 +51,6 @@ export const SingleComment = ({
           >
             {isEditing ? <Loading /> : "💾"}
           </Button>
-        {/* </td>
-        <td className="text-center"> */}
           <Button
             onClick={() => {
               setUpdateComments(true);
@@ -70,8 +59,6 @@ export const SingleComment = ({
           >
             {isDeleting ? <Loading /> : "🗑"}
           </Button>
-        {/* </td>
-      </tr> */}
     </>
   );
 };
