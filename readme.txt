@@ -106,3 +106,11 @@ m5w3d4 - CONTINUIAMO A LAVORARE SU EPIBOOKS!
       “rate”: string,        //valore compreso tra 1 e 5
       “elementId”: string    //l’identificativo ASIN del libro
     }
+
+m5w4d1 - CONTINUIAMO A LAVORARE SU EPIBOOKS!
+  1. Ricorda di installare il pacchetto npm: npm react-router-dom.
+  2. Crea una rotta per l'homepage dell'applicazione: dovrebbe puntare a "/" e caricare il componente AllTheBooks.
+  3. Crea un componente NotFound, dovrebbe venire renderizzato ogni volta che l'utente naviga su una rotta non gestita.
+  4. Crea una rotta per un nuovo componente BookDetails. Questa rotta deve passare un parametro ASIN tramite useParams.
+  5. Aggiungi un pulsante in ogni SingleBook per poter navigare a questa nuova rotta dinamica e caricare BookDetails.
+  6. Crea infine il componente BookDetails, che recupererà il parametro ASIN dall'url e caricherà dettagli e le recensioni del libro su cui si è cliccato. Per recuperare le informazioni del libro selezionato, importa il file JSON con l'array di libri all'interno di BookDetails e trova il libro corretto.

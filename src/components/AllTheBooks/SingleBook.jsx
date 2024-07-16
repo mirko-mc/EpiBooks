@@ -4,6 +4,7 @@ import "./SingleBook.css";
 // import { CommentArea } from "./CommentArea";
 // import { ThemeContext } from "../context/Context";
 import { ThemeContext } from "../../context/ThemeContextProvider";
+import { Link } from "react-router-dom";
 
 export const SingleBook = ({ book, handleClickSelected, bookSelected }) => {
   // const [selected, setSelected] = useState(false);
@@ -26,7 +27,9 @@ export const SingleBook = ({ book, handleClickSelected, bookSelected }) => {
           <Card.Title className="text-truncate">{book.title}</Card.Title>
           <Card.Text>{parseFloat(book.price).toFixed(2)}€</Card.Text>
           {/* {selected && <CommentArea asin={book.asin} />} */}
-          <Button variant="primary">Acquista</Button>
+          <Button as={Link} to={`/bookdetails/${book.asin}`} variant="primary">
+            Book Details ℹ
+          </Button>
         </Card.Body>
       </Card>
     </Col>
