@@ -1,9 +1,9 @@
 import { Col, Row } from "react-bootstrap";
-import fantasy from "../../data/fantasy.json";
-import { SingleBook } from "./SingleBook";
+import fantasy from "../data/fantasy.json";
+import { SingleBook } from "../components/SingleBook/SingleBook";
 // import { InputGroup, Form } from "react-bootstrap";
 import { useEffect, useState } from "react";
-import { CommentArea } from "../CommentArea/CommentArea";
+import { CommentArea } from "../components/CommentArea/CommentArea";
 
 export const AllTheBooks = ({ search }) => {
   const [bookSelected, setBookSelected] = useState(null);

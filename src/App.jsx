@@ -1,15 +1,15 @@
-import { MyNav } from "./components/Header/MyNav";
-import { MyFooter } from "./components/Footer/MyFooter";
+import { MyNav } from "./components/MyNav/MyNav";
+import { MyFooter } from "./components/MyFooter/MyFooter";
 import { Welcome } from "./components/Welcome";
-import { AllTheBooks } from "./components/AllTheBooks/AllTheBooks";
+import { AllTheBooks } from "./pages/AllTheBooks";
 import { Col, Row } from "react-bootstrap";
 import { useState } from "react";
 // import { ThemeContext } from "./context/Context";
 import { ThemeContextProvider } from "./context/ThemeContextProvider";
 import { BrowserRouter, Navigate, Route, Routes } from "react-router-dom";
-import { NotFound } from "./components/pages/NotFound";
-import { BookDetails } from "./components/AllTheBooks/BookDetails";
-import { About } from "./components/pages/About";
+import { NotFound } from "./pages/NotFound";
+import { About } from "./pages/About";
+import { BookDetails } from "./pages/BookDetails";
 
 function App() {
   const [search, setSearch] = useState("");
