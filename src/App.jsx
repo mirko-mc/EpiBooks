@@ -7,8 +7,9 @@ import { useState } from "react";
 // import { ThemeContext } from "./context/Context";
 import { ThemeContextProvider } from "./context/ThemeContextProvider";
 import { BrowserRouter, Navigate, Route, Routes } from "react-router-dom";
-import { NotFound } from "./components/NotFound";
+import { NotFound } from "./components/pages/NotFound";
 import { BookDetails } from "./components/AllTheBooks/BookDetails";
+import { About } from "./components/pages/About";
 
 function App() {
   const [search, setSearch] = useState("");
@@ -28,9 +29,10 @@ function App() {
           <Row>
             <Welcome />
             <Routes>
-              <Route path="/bookdetails/:asin" element={<BookDetails />} />
               <Route path="/" element={<AllTheBooks search={search} />} />
+              <Route path="/bookdetails/:asin" element={<BookDetails />} />
               <Route path="/404" element={<NotFound />} />
+              <Route path="About" element={<About />} />
               <Route path="/*" element={<Navigate to="/404" />} />
             </Routes>
           </Row>

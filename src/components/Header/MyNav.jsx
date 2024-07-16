@@ -2,6 +2,7 @@ import { useContext } from "react";
 import { Button, Form, InputGroup, Nav, Navbar } from "react-bootstrap";
 // import { ThemeContext } from "../context/Context";
 import { ThemeContext } from "../../context/ThemeContextProvider";
+import { Link } from "react-router-dom";
 export const MyNav = ({ setSearch }) => {
   const { theme, setTheme, useTheme } = useContext(ThemeContext);
   return (
@@ -10,15 +11,15 @@ export const MyNav = ({ setSearch }) => {
       className={useTheme("px-5 bg-dark", "px-5 bg-body-tertiary")}
       data-bs-theme={theme}
     >
-      <Navbar.Brand href="#">Home</Navbar.Brand>
+      <Navbar.Brand as={Link} to={"/"}>Home</Navbar.Brand>
       <Navbar.Toggle aria-controls="basic-navbar-nav" />
       <Navbar.Collapse
         id="basic-navbar-nav"
         className="align-items-baseline"
       >
         <Nav className="me-auto">
-          <Nav.Link href="#">About</Nav.Link>
-          <Nav.Link href="#">Browse</Nav.Link>
+          <Nav.Link as={Link} to={"/about"}>About</Nav.Link>
+          <Nav.Link as={Link} to={"/browse"}>Browse</Nav.Link>
         </Nav>
         <InputGroup className="w-50">
           <Form.Control

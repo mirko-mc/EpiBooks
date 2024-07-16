@@ -21,13 +21,16 @@ export const BookDetails = () => {
       }
     )
       .then((res) => {
-        if (!res.ok) throw new Error(res.statusText);
+        if (res.ok) throw new Error(res.statusText);
         return res.json();
       })
       .then((data) => setReview(data))
       .catch((err) => err.message === "404" && navigate("/404"))
       .finally(() => {});
   }, []);
+
+  console.log(book);
+  if (!book) return navigate("/404");
   return (
     <>
       <h2>Book Details {asin}</h2>

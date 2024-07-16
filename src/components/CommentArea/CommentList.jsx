@@ -1,7 +1,6 @@
 import { SingleComment } from "./SingleComment";
 
 export const CommentList = ({ comments, setEditError, setUpdateComments }) => {
-  let i = 0;
   return (
     <>
       {comments.map((comment) => (
