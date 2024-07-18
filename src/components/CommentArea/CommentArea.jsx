@@ -3,6 +3,7 @@ import { loadComments } from "../../data/Fetch";
 import { AddComment } from "./AddComment";
 import { CommentList } from "./CommentList";
 import { Loading } from "../Loading";
+import { AlertCustom } from "../AlertCustom";
 
 export const CommentArea = ({ asin }) => {
   const [comments, setComments] = useState([]);
@@ -17,6 +18,7 @@ export const CommentArea = ({ asin }) => {
   }, [asin]);
   return (
     <>
+    <AlertCustom />
       <AddComment asin={asin} handleSetComments={handleSetComments} />
       {isLoading && <Loading />}
       <CommentList comments={comments} handleSetComments={handleSetComments} />
