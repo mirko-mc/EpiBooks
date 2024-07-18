@@ -1,114 +1,81 @@
 const TOKEN =
   "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2Njg5MDU3MjJiNWMyMDAwMTUyNzFmNDEiLCJpYXQiOjE3MjAyNTU4NTgsImV4cCI6MTcyMTQ2NTQ1OH0.n0MajeLZ6MnSCBxed4Q0foGCtYmkizfM1DfOW8f-hhE";
-
+const URLFETCH = "https://striveschool-api.herokuapp.com/api/";
 // GET https://striveschool-api.herokuapp.com/api/books/:asin/comments/
-export const loadComments = (
-  asin,
-  setComments,
-  setIsLoading,
-  setLoadError,
-  setUpdateComments
-) => {
-  setIsLoading(true);
-  fetch(`https://striveschool-api.herokuapp.com/api/books/${asin}/comments/`, {
-    method: "GET",
-    headers: {
-      "Content-Type": "application/json",
-      Authorization: TOKEN,
-    },
-  })
-    .then((res) => {
-      if (!res.ok) throw new Error(res.status);
-      return res.json();
-    })
-    .then((data) => {
-      setComments(data);
-      return setUpdateComments(false);
-    })
-    .catch((err) => setLoadError(`Load Error ${err.message}`))
-    .finally(() => {
-      return setIsLoading(false);
+export const loadComments = async (asin) => {
+  try {
+    const res = await fetch(`${URLFETCH}books/${asin}/comments/`, {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: TOKEN,
+      },
     });
+    if (!res.ok) throw new Error(res.status);
+    const data = await res.json();
+    return data;
+  } catch (err) {
+    alert(`Load Error ${err.message}`);
+  }
 };
 
 // POST https://striveschool-api.herokuapp.com/api/comments/:elementId con il body che trovi nella prossima slide.
-export const handleSaveComment = (
-  formValue,
-  setIsSaving,
-  setSaveError,
-  setUpdateComments
-) => {
-  setIsSaving(true);
-  fetch("https://striveschool-api.herokuapp.com/api/comments/", {
-    method: "POST",
-    body: JSON.stringify(formValue),
-    headers: {
-      "Content-Type": "application/json",
-      Authorization: TOKEN,
-    },
-  })
-    .then((res) => {
-      if (res.ok) {
-        alert("Comment saved");
-        setUpdateComments(true);
-      } else throw new Error(res.status);
-      return res.json();
-    })
-    .catch((err) =>
-      err.message === "400"
-        ? setSaveError("Fill in the fields correctly")
-        : setSaveError(`Save Error ${err.message}`)
-    )
-    .finally(() => setIsSaving(false));
+export const saveComment = async (formValue) => {
+  try {
+    const res = await fetch(`${URLFETCH}comments/`, {
+      method: "POST",
+      body: JSON.stringify(formValue),
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: TOKEN,
+      },
+    });
+    if (res.ok) alert("Comment saved");
+    else throw new Error(res.status);
+    return res.json();
+  } catch (err) {
+    err.message === "400"
+      ? alert("Fill in the fields correctly")
+      : alert(`Save Error ${err.message}`);
+  }
 };
 
 // PUT e DELETE https://striveschool-api.herokuapp.com/api/comments/:elementId
-export const editComment = (asin, edit, setIsEditing, setEditError) => {
-  setIsEditing(true);
-  fetch(`https://striveschool-api.herokuapp.com/api/comments/${asin}`, {
-    method: "PUT",
-    body: JSON.stringify(edit),
-    headers: {
-      "Content-Type": "application/json",
-      Authorization: TOKEN,
-    },
-  })
-    .then((res) => {
-      res.ok && alert("Comment edited");
-      if (!res.ok) throw new Error(res.status);
-      return res.json();
-    })
-    .catch((err) =>
-      err.message === "400"
-        ? setEditError("Fill in the fields correctly")
-        : setEditError(`Edit Error ${err.message}`)
-    )
-    .finally(() => setIsEditing(false));
+export const editComment = async (asin, edit) => {
+  try {
+    const res = await fetch(`${URLFETCH}comments/${asin}`, {
+      method: "PUT",
+      body: JSON.stringify(edit),
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: TOKEN,
+      },
+    });
+    res.ok && alert("Comment edited");
+    if (!res.ok) throw new Error(res.status);
+    return res.json();
+  } catch (err) {
+    err.message === "400"
+      ? alert("Fill in the fields correctly")
+      : alert(`Edit Error ${err.message}`);
+  }
 };
 
-export const delComment = (
-  asin,
-  setIsDeleting,
-  setDelError,
-  setUpdateComments
-) => {
-  setIsDeleting(true);
-  fetch(`https://striveschool-api.herokuapp.com/api/comments/${asin}`, {
-    method: "DELETE",
-    headers: {
-      "Content-Type": "application/json",
-      Authorization: TOKEN,
-    },
-  })
-    .then((res) => {
-      res.ok && alert("Comment deleted");
-      if (!res.ok) throw new Error(res.status);
-      return setUpdateComments(false);
-    })
-    .catch((err) =>
-      err.message === "400"
-        ? setDelError("Fill in the fields correctly")
-        : setDelError(`Delete Error ${err.message}`)
-    )
-    .finally(() => setIsDeleting(false));
+export const delComment = async (asin) => {
+  try {
+    const res = await fetch(`${URLFETCH}comments/${asin}`, {
+      method: "DELETE",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: TOKEN,
+      },
+    });
+    res.ok && alert("Comment deleted");
+    if (!res.ok) throw new Error(res.status);
+    return res.json();
+  } catch (err) {
+    err.message === "400"
+      ? alert("Fill in the fields correctly")
+      : alert(`Delete Error ${err.message}`);
+  }
 };

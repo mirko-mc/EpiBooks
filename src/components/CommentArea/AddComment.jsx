@@ -1,44 +1,50 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { Button, Form } from "react-bootstrap";
-import { handleSaveComment } from "../../data/Fetch";
 import { Loading } from "../Loading";
-import { AlertError } from "../AlertError";
-export const AddComment = ({ asin, setUpdateComments }) => {
+import { saveComment } from "../../data/Fetch";
+export const AddComment = ({ asin, handleSetComments }) => {
   const [formValue, setFormValue] = useState({
     rate: "",
     comment: "",
     elementId: asin,
   });
-  const [isSaving, setIsSaving] = useState(false);
+  const [isFetching, setIsFetching] = useState(false);
   const initialFormState = {
     rate: "",
     comment: "",
     elementId: asin,
   };
-  const [isError, setIsError] = useState("");
-  useEffect(() => {
-    !isSaving && setFormValue(initialFormState);
-  }, [isSaving]);
+  const handleSaveComment = async () => {
+    if (parseInt(formValue.rate) < 0 || parseInt(formValue.rate) > 5)
+      alert("Rate must be between 0 and 5");
+    else {
+      setIsFetching(true);
+      await saveComment(formValue);
+      setFormValue(initialFormState);
+      await handleSetComments(asin);
+      setIsFetching(false);
+    }
+  };
   const handleChange = (event) => {
     setFormValue({ ...formValue, [event.target.name]: event.target.value });
   };
   return (
     <Form className="mb-3 d-flex flex-column align-items-center">
-      {isError && <AlertError isError={isError} setIsError={setIsError} />}
-      <Form.Group className="mb-3 w-100" controlId="exampleForm.ControlInput1">
-        <Form.Label>Rate</Form.Label>
+      <Form.Group className="mb-3 w-100" controlId="ControlInput">
+        <Form.Label>Rate from 0 to 5</Form.Label>
         <Form.Control
-          type="text"
+          type="number"
           placeholder="rate"
+          min="0"
+          max="5"
+          step="1"
+          required
           name="rate"
           onChange={handleChange}
           value={formValue.rate}
         />
       </Form.Group>
-      <Form.Group
-        className="mb-3 w-100"
-        controlId="exampleForm.ControlTextarea1"
-      >
+      <Form.Group className="mb-3 w-100" controlId="ControlTextarea">
         <Form.Label>Comment</Form.Label>
         <Form.Control
           as="textarea"
@@ -52,16 +58,9 @@ export const AddComment = ({ asin, setUpdateComments }) => {
       <Button
         className="w-25"
         variant="primary"
-        onClick={() =>
-          handleSaveComment(
-            formValue,
-            setIsSaving,
-            setIsError,
-            setUpdateComments
-          )
-        }
+        onClick={() => handleSaveComment(formValue)}
       >
-        {isSaving ? <Loading /> : "💾"}
+        {isFetching ? <Loading /> : "💾"}
       </Button>
     </Form>
   );

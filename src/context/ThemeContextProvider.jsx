@@ -1,12 +1,9 @@
 import { createContext, useState } from "react";
 
-/**
- * versione con provider nel context
- * */
 export const ThemeContext = createContext(null);
 
 export const ThemeContextProvider = ({ children }) => {
-  const [theme, setTheme] = useState("light");
+  const [theme, setTheme] = useState("dark");
   const useTheme = (dark, light) => {
     if (theme === "dark") return dark;
     else return light;
