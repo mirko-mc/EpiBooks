@@ -114,3 +114,23 @@ m5w4d1 - CONTINUIAMO A LAVORARE SU EPIBOOKS!
   4. Crea una rotta per un nuovo componente BookDetails. Questa rotta deve passare un parametro ASIN tramite useParams.
   5. Aggiungi un pulsante in ogni SingleBook per poter navigare a questa nuova rotta dinamica e caricare BookDetails.
   6. Crea infine il componente BookDetails, che recupererà il parametro ASIN dall'url e caricherà dettagli e le recensioni del libro su cui si è cliccato. Per recuperare le informazioni del libro selezionato, importa il file JSON con l'array di libri all'interno di BookDetails e trova il libro corretto.
+
+m5w4d4 - IL CAPITOLO FINALE - COMPLETIAMO EPIBOOKS AGGIUNGENDO DEI TESTS!
+  Il tuo lavoro per oggi sarà completare il tuo progetto EpiBooks aggiungendo dei test all'interno dell'applicazione React.
+
+  Non hai bisogno di installare nessuna dipendenza aggiuntiva, la tua create-react-app ha già tutto il necessario per cominciare. Puoi lavorare modificando direttamente il file App.test.js e verificando i tuoi progressi lanciando il comando npm run test.
+
+  Ricordati le differenze nell'utilizzo dei costrutti get*, find* e query* in react-testing-library. Nel caso un elemento risultasse difficile da raggiungere tramite react-testing-library, puoi aggiungere dei data-testid agli elementi del DOM.
+
+  Nella prossima slide troverai le specifiche per i test da implementare.
+  Sentiti in caso libero/a di aggiungerne altri a tuo piacimento.
+
+  TEST DA IMPLEMENTARE:
+    1. Verifica che il componente Welcome venga montato correttamente.
+    2. Verifica che vengano effettivamente renderizzate tante bootstrap cards quanti sono i libri nel file json utilizzato.
+    3. Verifica che il componente CommentArea venga renderizzato correttamente.
+    4. Verifica, magari con più tests, che il filtraggio dei libri tramite navbar si comporti come previsto.
+    5. Verifica che, cliccando su un libro, il suo bordo cambi colore.
+    6. Verifica che, cliccando su di un secondo libro dopo il primo, il bordo del primo libro ritorni normale.
+    7. Verifica che all'avvio della pagina, senza aver ancora cliccato su nessun libro, non ci siano istanze del componente SingleComment all'interno del DOM.
+    8. Verifica infine che, cliccando su di un libro con recensioni, esse vengano caricate correttamente all'interno del DOM.

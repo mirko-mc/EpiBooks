@@ -34,7 +34,7 @@ export const AddComment = ({ asin, handleSetComments }) => {
         <Form.Label>Rate from 0 to 5</Form.Label>
         <Form.Control
           type="number"
-          placeholder="rate"
+          placeholder="Rate"
           min="0"
           max="5"
           step="1"
