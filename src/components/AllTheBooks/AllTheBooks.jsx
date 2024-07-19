@@ -13,9 +13,9 @@ export const AllTheBooks = ({ search }) => {
   const handleClickSelected = (asin) => {
     bookSelected === asin ? setBookSelected(null) : setBookSelected(asin);
   };
-  fantasy = fantasy.slice(0, 6);
+  const category = fantasy.slice(0, 6);
   useEffect(() => {
-    const resultTemp = fantasy.filter((book) =>
+    const resultTemp = category.filter((book) =>
       book.title.toLowerCase().includes(search.toLowerCase())
     );
     setResultSearch(resultTemp);
