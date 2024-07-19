@@ -15,6 +15,7 @@ export const SingleBook = ({ book, handleClickSelected, bookSelected }) => {
           `bg-dark text-bg-dark ${selected()}`,
           `bg-light text-bg-light ${selected()}`
         )}
+        data-testid="bookCards"
       >
         <div onClick={() => handleClickSelected(book.asin)}>
           <Card.Header>
