@@ -1,11 +1,11 @@
 import { AllTheBooks } from "../components/AllTheBooks/AllTheBooks";
 import { Welcome } from "../components/Welcome";
 
-export const Home = ({ search }) => {
+export const Home = ({genre, search }) => {
   return (
     <>
-      <Welcome />
-      <AllTheBooks search={search} />
+      <Welcome/>
+      <AllTheBooks search={search} genre={genre} />
     </>
   );
 };

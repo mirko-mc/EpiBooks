@@ -3,7 +3,7 @@ import { Button, Form, Nav, Navbar, NavDropdown } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import { ThemeContext } from "../../context/ThemeContextProvider";
 
-export const MyNav = ({ setSearch }) => {
+export const MyNav = ({ setSearch, setGenre }) => {
   const { theme, setTheme, useTheme } = useContext(ThemeContext);
   return (
     <Navbar
@@ -24,11 +24,21 @@ export const MyNav = ({ setSearch }) => {
             Browse
           </Nav.Link>
           <NavDropdown title="Category" id="basic-nav-dropdown">
-            <NavDropdown.Item href="#action/3.1">Fantasy</NavDropdown.Item>
-            <NavDropdown.Item href="#action/3.1">Horror</NavDropdown.Item>
-            <NavDropdown.Item href="#action/3.1">Romance</NavDropdown.Item>
-            <NavDropdown.Item href="#action/3.1">Scifi</NavDropdown.Item>
-            <NavDropdown.Item href="#action/3.1">Cat5</NavDropdown.Item>
+            <NavDropdown.Item href="#" onClick={() => setGenre("fantasy")}>
+              Fantasy
+            </NavDropdown.Item>
+            <NavDropdown.Item href="#" onClick={() => setGenre("history")}>
+              History
+            </NavDropdown.Item>
+            <NavDropdown.Item href="#" onClick={() => setGenre("horror")}>
+              Horror
+            </NavDropdown.Item>
+            <NavDropdown.Item href="#" onClick={() => setGenre("romance")}>
+              Romance
+            </NavDropdown.Item>
+            <NavDropdown.Item href="#" onClick={() => setGenre("scifi")}>
+              Scifi
+            </NavDropdown.Item>
           </NavDropdown>
         </Nav>
         <Form.Control

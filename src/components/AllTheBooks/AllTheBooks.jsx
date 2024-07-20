@@ -1,19 +1,46 @@
 import { useEffect, useState } from "react";
-import fantasy from "../../data/fantasy.json";
 import { Col, Row } from "react-bootstrap";
 import { SingleBook } from "./SingleBook";
 import { CommentArea } from "../CommentArea/CommentArea";
+import Fantasy from "../../data/fantasy.json";
+import History from "../../data/history.json";
+import Horror from "../../data/horror.json";
+import Romance from "../../data/romance.json";
+import Scifi from "../../data/scifi.json";
 
-export const AllTheBooks = ({ search }) => {
+export const AllTheBooks = ({ genre, search }) => {
   // stato per la ricerca
-  const [resultSearch, setResultSearch] = useState(fantasy);
+  const [category, setCategory] = useState([]);
+  useEffect(() => {
+    switch (genre) {
+      case "fantasy":
+        setCategory(Fantasy.slice(0, 6));
+        break;
+      case "history":
+        setCategory(History.slice(0, 6));
+        break;
+      case "horror":
+        setCategory(Horror.slice(0, 6));
+        break;
+      case "romance":
+        setCategory(Romance.slice(0, 6));
+        break;
+      case "scifi":
+        setCategory(Scifi.slice(0, 6));
+        break;
+
+      default:
+        setCategory(Fantasy.slice(0, 6));
+        break;
+    }
+  }, [genre]);
+  const [resultSearch, setResultSearch] = useState(category);
   // stato per il libro da selezionare/deselezionare
   const [bookSelected, setBookSelected] = useState(null);
   // funzione per selezionare/deselezionare il libro
   const handleClickSelected = (asin) => {
     bookSelected === asin ? setBookSelected(null) : setBookSelected(asin);
   };
-  const category = fantasy.slice(0, 6);
   useEffect(() => {
     const resultTemp = category.filter((book) =>
       book.title.toLowerCase().includes(search.toLowerCase())

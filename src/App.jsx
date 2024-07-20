@@ -12,6 +12,7 @@ import { Home } from "./pages/Home";
 function App() {
   const { useTheme } = useContext(ThemeContext);
   const [search, setSearch] = useState("");
+  const [genre, setGenre] = useState("fantasy");
   return (
     <BrowserRouter>
       {/* <header className={useTheme("bg-dark text-bg-dark", "bg-light")}> */}
@@ -19,7 +20,7 @@ function App() {
         <Container fluid>
           <Row>
             <Col className="p-0">
-              <MyNav setSearch={setSearch} />
+              <MyNav setSearch={setSearch} setGenre={setGenre} />
             </Col>
           </Row>
         </Container>
@@ -29,7 +30,12 @@ function App() {
         <Container>
           <Row>
             <Routes>
-              <Route path="/" element={<Home search={search} />} />
+              <Route
+                path="/"
+                element={
+                  <Home search={search} genre={genre} setGenre={setGenre} />
+                }
+              />
               <Route path="/bookdetails/:asin" element={<BookDetails />} />
               <Route path="/404" element={<NotFound />} />
               <Route path="About" element={<About />} />
