@@ -5,7 +5,6 @@ import { CommentArea } from "../CommentArea/CommentArea";
 
 
 export const AllTheBooks = ({ resultSearch }) => {
-  // stato per il libro da selezionare/deselezionare
   const [bookSelected, setBookSelected] = useState(null);
   const handleClickSelected = (asin) => {
     bookSelected === asin ? setBookSelected(null) : setBookSelected(asin);

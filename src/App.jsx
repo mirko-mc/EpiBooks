@@ -52,7 +52,6 @@ function App() {
   }, [search, category]);
   return (
     <BrowserRouter>
-      {/* <header className={useTheme("bg-dark text-bg-dark", "bg-light")}> */}
       <header>
         <Container fluid>
           <Row>

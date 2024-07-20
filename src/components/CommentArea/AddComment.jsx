@@ -2,7 +2,15 @@ import { useState } from "react";
 import { Button, Form } from "react-bootstrap";
 import { Loading } from "../Loading";
 import { saveComment } from "../../data/Fetch";
+import { AlertCustom } from "../AlertCustom";
 export const AddComment = ({ asin, handleSetComments }) => {
+  const initialAlertState = {
+    isAlert: false,
+    heading: "",
+    message: "",
+    variant: "",
+  };
+  const [inAlert, setInAlert] = useState(initialAlertState);
   const [formValue, setFormValue] = useState({
     rate: "",
     comment: "",
@@ -15,14 +23,37 @@ export const AddComment = ({ asin, handleSetComments }) => {
     elementId: asin,
   };
   const handleSaveComment = async () => {
-    if (parseInt(formValue.rate) < 0 || parseInt(formValue.rate) > 5)
-      alert("Rate must be between 0 and 5");
-    else {
-      setIsFetching(true);
-      await saveComment(formValue);
-      setFormValue(initialFormState);
-      await handleSetComments(asin);
-      setIsFetching(false);
+    if (parseInt(formValue.rate) < 0 || parseInt(formValue.rate) > 5) {
+      setInAlert({
+        isAlert: true,
+        heading: "Rate not valid",
+        message: "Rate must be between 0 and 5",
+        variant: "danger",
+      })
+    } else if (formValue.comment === "") {
+      setInAlert({
+        isAlert: true,
+        heading: "Comment is empty",
+        message: "You forgot to enter the comment.",
+        variant: "danger",
+      })
+    } else {
+    setIsFetching(true);
+    await saveComment(formValue)
+      .catch((e) => {
+        setInAlert({
+          isAlert: true,
+          heading: `Error ${e.message}`,
+          message: "Try Later",
+          variant: "danger",
+        })
+      })
+      .finally(
+        setInAlert(initialAlertState)
+      );
+    setFormValue(initialFormState);
+    await handleSetComments(asin);
+    setIsFetching(false);
     }
   };
   const handleChange = (event) => {
@@ -55,6 +86,7 @@ export const AddComment = ({ asin, handleSetComments }) => {
           value={formValue.comment}
         />
       </Form.Group>
+      {inAlert.isAlert && <AlertCustom variant={inAlert.variant} heading={inAlert.heading} message={inAlert.message} />}
       <Button
         className="w-25"
         variant="primary"

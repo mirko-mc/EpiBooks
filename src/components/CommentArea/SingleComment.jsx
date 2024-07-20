@@ -2,8 +2,16 @@ import { useState } from "react";
 import { Button, Form } from "react-bootstrap";
 import { Loading } from "../Loading";
 import { delComment, editComment } from "../../data/Fetch";
+import { AlertCustom } from "../AlertCustom";
 
 export const SingleComment = ({ comment, handleSetComments }) => {
+  const initialAlertState = {
+    isAlert: false,
+    heading: "",
+    message: "",
+    variant: "",
+  };
+  const [inAlert, setInAlert] = useState(initialAlertState);
   const [showSave, setShowSave] = useState(true);
   const [isFetching, setIsFetching] = useState({
     put: false,
@@ -18,18 +26,52 @@ export const SingleComment = ({ comment, handleSetComments }) => {
     setEdit({ ...edit, [event.target.name]: event.target.value });
   };
   const handleSaveEditComment = async (asin) => {
-    if (parseInt(edit.rate) < 0 || parseInt(edit.rate) > 5)
-      alert("Rate must be between 0 and 5");
-    else {
+    if (parseInt(edit.rate) < 0 || parseInt(edit.rate) > 5) {
+      setInAlert({
+        isAlert: true,
+        heading: "Rate not valid",
+        message: "Rate must be between 0 and 5",
+        variant: "danger",
+      })
+    } else if (edit.comment === "") {
+      setInAlert({
+        isAlert: true,
+        heading: "Comment is empty",
+        message: "You forgot to enter the comment.",
+        variant: "danger",
+      })
+    } else {
       setIsFetching({ ...isFetching, put: true });
-      await editComment(asin, edit);
+      await editComment(asin, edit)
+        .then(() => {
+          setInAlert({
+            isAlert: true,
+            heading: "Comment edited",
+            message: "Comment edited correctly.",
+            variant: "success",
+          })
+        })
+        .finally(
+          setInAlert(initialAlertState)
+        )
       setIsFetching({ ...isFetching, put: false });
       setShowSave(true);
     }
   };
   const handleDeleteComment = async (asin) => {
     setIsFetching({ ...isFetching, delete: true });
-    await delComment(asin);
+    await delComment(asin)
+      .catch((e) => {
+        setInAlert({
+          isAlert: true,
+          heading: e.message,
+          message: "Deleting Error. Try Later",
+          variant: "danger",
+        })
+      })
+      .finally(
+        setInAlert(initialAlertState)
+      )
     await handleSetComments(asin);
     setIsFetching({ ...isFetching, delete: false });
   };
@@ -53,6 +95,7 @@ export const SingleComment = ({ comment, handleSetComments }) => {
           disabled={showSave}
         />
       </Form.Group>
+      {inAlert.isAlert && <AlertCustom variant={inAlert.variant} heading={inAlert.heading} message={inAlert.message} />}
       <Button hidden={!showSave} onClick={() => setShowSave(false)}>
         {isFetching.put ? <Loading /> : "🖊"}
       </Button>
