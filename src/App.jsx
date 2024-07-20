@@ -6,15 +6,50 @@ import { NotFound } from "./pages/NotFound";
 import { About } from "./pages/About";
 import { BookDetails } from "./pages/BookDetails";
 import { ThemeContext } from "./context/ThemeContextProvider";
-import { useContext, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { Home } from "./pages/Home";
+import Fantasy from "./data/fantasy.json";
+import History from "./data/history.json";
+import Horror from "./data/horror.json";
+import Romance from "./data/romance.json";
+import Scifi from "./data/scifi.json";
 
 function App() {
   const { useTheme } = useContext(ThemeContext);
   const [search, setSearch] = useState("");
   const [genre, setGenre] = useState("fantasy");
   const [category, setCategory] = useState([]);
+  useEffect(() => {
+    switch (genre) {
+      case "fantasy":
+        setCategory(Fantasy.slice(0, 6));
+        break;
+      case "history":
+        setCategory(History.slice(0, 6));
+        break;
+      case "horror":
+        setCategory(Horror.slice(0, 6));
+        break;
+      case "romance":
+        setCategory(Romance.slice(0, 6));
+        break;
+      case "scifi":
+        setCategory(Scifi.slice(0, 6));
+        break;
 
+      default:
+        setCategory(Fantasy.slice(0, 6));
+        break;
+    }
+  }, [genre]);
+  const [resultSearch, setResultSearch] = useState(category);
+  
+  useEffect(() => {
+    const resultTemp = category.filter((book) => {
+      return book.title.toLowerCase().includes(search.toLowerCase());
+    });
+    setResultSearch(resultTemp);
+  }, [search, category]);
   return (
     <BrowserRouter>
       {/* <header className={useTheme("bg-dark text-bg-dark", "bg-light")}> */}
@@ -35,7 +70,7 @@ function App() {
               <Route
                 path="/"
                 element={
-                  <Home search={search} genre={genre} setGenre={setGenre} category={category} setCategory={setCategory}/>
+                  <Home resultSearch={resultSearch}/>
                 }
               />
               <Route
