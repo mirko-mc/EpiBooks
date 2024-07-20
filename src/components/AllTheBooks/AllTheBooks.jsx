@@ -8,9 +8,12 @@ import Horror from "../../data/horror.json";
 import Romance from "../../data/romance.json";
 import Scifi from "../../data/scifi.json";
 
-export const AllTheBooks = ({ genre, search }) => {
+export const AllTheBooks = ({ category, setCategory, genre, search }) => {
   // stato per la ricerca
-  const [category, setCategory] = useState([]);
+  // funzione per selezionare/deselezionare il libro
+  const handleClickSelected = (asin) => {
+    bookSelected === asin ? setBookSelected(null) : setBookSelected(asin);
+  };
   useEffect(() => {
     switch (genre) {
       case "fantasy":
@@ -37,16 +40,12 @@ export const AllTheBooks = ({ genre, search }) => {
   const [resultSearch, setResultSearch] = useState(category);
   // stato per il libro da selezionare/deselezionare
   const [bookSelected, setBookSelected] = useState(null);
-  // funzione per selezionare/deselezionare il libro
-  const handleClickSelected = (asin) => {
-    bookSelected === asin ? setBookSelected(null) : setBookSelected(asin);
-  };
   useEffect(() => {
-    const resultTemp = category.filter((book) =>
-      book.title.toLowerCase().includes(search.toLowerCase())
-    );
+    const resultTemp = category.filter((book) => {
+      return book.title.toLowerCase().includes(search.toLowerCase());
+    });
     setResultSearch(resultTemp);
-  }, [search]);
+  }, [search, category]);
 
   return (
     <>

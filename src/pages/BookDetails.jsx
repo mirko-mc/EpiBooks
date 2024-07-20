@@ -1,16 +1,17 @@
-import Fantasy from "../data/fantasy.json";
 import { useNavigate, useParams } from "react-router-dom";
 import { Card, Col, Row } from "react-bootstrap";
 import { CommentArea } from "../components/CommentArea/CommentArea";
 import { useEffect } from "react";
+import { loadComments } from "../data/Fetch";
 
-export const BookDetails = () => {
+export const BookDetails = ({ category }) => {
   const navigate = useNavigate();
   const { asin } = useParams();
-  const book = Fantasy.find((book) => book.asin === asin);
+  const book = category.find((book) => book.asin === asin);
   useEffect(() => {
-    if (!book) return navigate("/404");
-  });
+    if (!book) navigate("/404");
+    else loadComments(asin);
+  }, []);
   if (book)
     return (
       <Card>

@@ -13,6 +13,8 @@ function App() {
   const { useTheme } = useContext(ThemeContext);
   const [search, setSearch] = useState("");
   const [genre, setGenre] = useState("fantasy");
+  const [category, setCategory] = useState([]);
+
   return (
     <BrowserRouter>
       {/* <header className={useTheme("bg-dark text-bg-dark", "bg-light")}> */}
@@ -33,10 +35,13 @@ function App() {
               <Route
                 path="/"
                 element={
-                  <Home search={search} genre={genre} setGenre={setGenre} />
+                  <Home search={search} genre={genre} setGenre={setGenre} category={category} setCategory={setCategory}/>
                 }
               />
-              <Route path="/bookdetails/:asin" element={<BookDetails />} />
+              <Route
+                path="/bookdetails/:asin"
+                element={<BookDetails category={category} />}
+              />
               <Route path="/404" element={<NotFound />} />
               <Route path="About" element={<About />} />
               <Route path="/*" element={<Navigate to="/404" />} />
