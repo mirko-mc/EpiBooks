@@ -8,7 +8,7 @@ export const MyNav = ({ setSearch, setGenre }) => {
   return (
     <Navbar
       expand="md"
-      className={useTheme("px-5 bg-dark", "px-5 bg-body-tertiary")}
+      className={useTheme("px-5 bg-dark mb-3", "px-5 bg-body-tertiary mb-3")}
       data-bs-theme={theme}
     >
       <Navbar.Brand as={Link} to={"/"}>

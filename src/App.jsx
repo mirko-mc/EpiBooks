@@ -1,6 +1,6 @@
 import { MyNav } from "./components/MyNav/MyNav";
 import { MyFooter } from "./components/MyFooter/MyFooter";
-import { Col, Container, Row } from "react-bootstrap";
+import { Button, Col, Container, Row } from "react-bootstrap";
 import { BrowserRouter, Navigate, Route, Routes } from "react-router-dom";
 import { NotFound } from "./pages/NotFound";
 import { About } from "./pages/About";
@@ -19,31 +19,32 @@ function App() {
   const [search, setSearch] = useState("");
   const [genre, setGenre] = useState("fantasy");
   const [category, setCategory] = useState([]);
+  const [item,setItem]=useState(6)
   useEffect(() => {
     switch (genre) {
       case "fantasy":
-        setCategory(Fantasy.slice(0, 6));
+        setCategory(Fantasy.slice(item-6, item));
         break;
       case "history":
-        setCategory(History.slice(0, 6));
+        setCategory(History.slice(item-6, item));
         break;
       case "horror":
-        setCategory(Horror.slice(0, 6));
+        setCategory(Horror.slice(item-6, item));
         break;
       case "romance":
-        setCategory(Romance.slice(0, 6));
+        setCategory(Romance.slice(item-6, item));
         break;
       case "scifi":
-        setCategory(Scifi.slice(0, 6));
+        setCategory(Scifi.slice(item-6, item));
         break;
 
       default:
-        setCategory(Fantasy.slice(0, 6));
+        setCategory(Fantasy.slice(item-6, item));
         break;
     }
   }, [genre]);
   const [resultSearch, setResultSearch] = useState(category);
-  
+
   useEffect(() => {
     const resultTemp = category.filter((book) => {
       return book.title.toLowerCase().includes(search.toLowerCase());
@@ -52,7 +53,7 @@ function App() {
   }, [search, category]);
   return (
     <BrowserRouter>
-      <header>
+      <header className={useTheme("bg-black text-bg-dark", "bg-light")}>
         <Container fluid>
           <Row>
             <Col className="p-0">
@@ -69,7 +70,7 @@ function App() {
               <Route
                 path="/"
                 element={
-                  <Home resultSearch={resultSearch}/>
+                  <Home resultSearch={resultSearch} />
                 }
               />
               <Route
@@ -80,6 +81,16 @@ function App() {
               <Route path="About" element={<About />} />
               <Route path="/*" element={<Navigate to="/404" />} />
             </Routes>
+          </Row>
+          <Row>
+            <Col md={4} className="d-flex justify-content-center offset-4">
+              <Button className="btn btn-primary">➖</Button>
+              <p>{item/6}</p>
+              <Button className="btn btn-primary" onClick={()=>setItem(item+1)}>➕</Button>
+            </Col>
+            <Col md={4} className="d-flex justify-content-end">
+            🟦
+            </Col>
           </Row>
         </Container>
       </main>
