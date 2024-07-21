@@ -2,7 +2,11 @@ import Button from "react-bootstrap/Button";
 import CartCard from "./CartCard";
 
 function Cart({ addCart, setAddCart }) {
-  // console.log("ADDCART", addCart);
+  for (const ITEM of addCart) {
+    console.log("ITEM", ITEM.asin);
+    console.log("ADDCART", addCart[0]);
+    if (ITEM.asin === addCart.asin) return console.log("presente");
+  }
   return (
     <>
       <span>TOTALE_COSTO_CARRELLO</span>
@@ -17,14 +21,13 @@ function Cart({ addCart, setAddCart }) {
         </span>
       </Button>
       {addCart.map((book) => (
+        
         <CartCard
           key={"cart" + book.asin}
           addCart={book}
-          setAddCart={setAddCart}
+          setAddCart={addCart}
         />
       ))}
-      {/* <CartCard addCart={addCart} /> */}
-      {/* <CartCard /> */}
     </>
   );
 }

@@ -4,7 +4,13 @@ import { Link } from "react-router-dom";
 import { ThemeContext } from "../../context/ThemeContextProvider";
 import "./SingleBook.css";
 
-export const SingleBook = ({ book, handleClickSelected, bookSelected }) => {
+export const SingleBook = ({
+  book,
+  handleClickSelected,
+  bookSelected,
+  setAddCart,
+  addCart,
+}) => {
   const { useTheme } = useContext(ThemeContext);
   const selected = () =>
     bookSelected === book.asin ? "mb-3 redBorder" : "mb-3 border-0";
@@ -34,7 +40,7 @@ export const SingleBook = ({ book, handleClickSelected, bookSelected }) => {
           </Card.Body>
           <Card.Footer className="d-flex justify-content-between align-items-baseline">
             <Card.Text>Price : {parseFloat(book.price).toFixed(2)}€</Card.Text>
-            <Button>🛒</Button>
+            <Button onClick={() => setAddCart([...addCart, book])}>🛒</Button>
             <Button
               as={Link}
               to={`/bookdetails/${book.asin}`}

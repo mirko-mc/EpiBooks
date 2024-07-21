@@ -2,8 +2,7 @@ import { useEffect, useState } from "react";
 import { Col, Row } from "react-bootstrap";
 import { SingleBook } from "./SingleBook";
 import { CommentArea } from "../CommentArea/CommentArea";
-import Cart from "../Cart/Cart"
-
+import Cart from "../Cart/Cart";
 
 export const AllTheBooks = ({ resultSearch }) => {
   const [addCart, setAddCart] = useState([]);
@@ -22,6 +21,8 @@ export const AllTheBooks = ({ resultSearch }) => {
               book={b}
               handleClickSelected={handleClickSelected}
               bookSelected={bookSelected}
+              addCart={addCart}
+              setAddCart={setAddCart}
             />
           ))}
         </Row>
