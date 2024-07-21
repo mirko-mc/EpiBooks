@@ -14,6 +14,12 @@ export const SingleBook = ({
   const { useTheme } = useContext(ThemeContext);
   const selected = () =>
     bookSelected === book.asin ? "mb-3 redBorder" : "mb-3 border-0";
+  const handleSetAddCart = (book) => {
+    for (const ITEM of addCart) {
+      if(ITEM.asin.includes(book.asin))return console.log("presente");
+    }
+    setAddCart([...addCart, book]);
+  };
   return (
     <Col md={4}>
       <Card
@@ -40,7 +46,7 @@ export const SingleBook = ({
           </Card.Body>
           <Card.Footer className="d-flex justify-content-between align-items-baseline">
             <Card.Text>Price : {parseFloat(book.price).toFixed(2)}€</Card.Text>
-            <Button onClick={() => setAddCart([...addCart, book])}>🛒</Button>
+            <Button onClick={() => handleSetAddCart(book)}>🛒</Button>
             <Button
               as={Link}
               to={`/bookdetails/${book.asin}`}
