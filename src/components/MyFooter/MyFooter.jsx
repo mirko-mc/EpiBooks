@@ -7,18 +7,16 @@ export const MyFooter = () => {
   return (
     <footer>
       <Container fluid>
-        <Row className="justify-content-center">
+        <Row>
           <Col
-            className={
-              ("justify-content-center border-top",
-              useTheme("bg-dark", "bg-light"))
-            }
+            className={useTheme(
+              "bg-dark p-4 text-center",
+              "bg-light p-4 text-center"
+            )}
           >
-            <div>
-              <span className={useTheme("text-bg-dark", "text-muted")}>
-                Sirena Impicciona © 2024 ConLaK
-              </span>
-            </div>
+            <span className={useTheme("text-bg-dark", "text-muted")}>
+              Mirko ConLaK © 2024
+            </span>
           </Col>
         </Row>
       </Container>

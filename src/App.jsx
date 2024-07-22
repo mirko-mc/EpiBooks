@@ -1,6 +1,6 @@
 import { MyNav } from "./components/MyNav/MyNav";
 import { MyFooter } from "./components/MyFooter/MyFooter";
-import { Button, Col, Container, Row } from "react-bootstrap";
+import { Col, Container, Row } from "react-bootstrap";
 import { BrowserRouter, Navigate, Route, Routes } from "react-router-dom";
 import { NotFound } from "./pages/NotFound";
 import { About } from "./pages/About";
@@ -19,30 +19,30 @@ function App() {
   const [search, setSearch] = useState("");
   const [genre, setGenre] = useState("fantasy");
   const [category, setCategory] = useState([]);
-  const [item,setItem]=useState(6)
+  const [itemForPage, setItemForPage] = useState(6);
   useEffect(() => {
     switch (genre) {
       case "fantasy":
-        setCategory(Fantasy.slice(item-6, item));
+        setCategory(Fantasy.slice(itemForPage - 6, itemForPage));
         break;
       case "history":
-        setCategory(History.slice(item-6, item));
+        setCategory(History.slice(itemForPage - 6, itemForPage));
         break;
       case "horror":
-        setCategory(Horror.slice(item-6, item));
+        setCategory(Horror.slice(itemForPage - 6, itemForPage));
         break;
       case "romance":
-        setCategory(Romance.slice(item-6, item));
+        setCategory(Romance.slice(itemForPage - 6, itemForPage));
         break;
       case "scifi":
-        setCategory(Scifi.slice(item-6, item));
+        setCategory(Scifi.slice(itemForPage - 6, itemForPage));
         break;
 
       default:
-        setCategory(Fantasy.slice(item-6, item));
+        setCategory(Fantasy.slice(itemForPage - 6, itemForPage));
         break;
     }
-  }, [genre]);
+  }, [genre, itemForPage]);
   const [resultSearch, setResultSearch] = useState(category);
 
   useEffect(() => {
@@ -70,7 +70,11 @@ function App() {
               <Route
                 path="/"
                 element={
-                  <Home resultSearch={resultSearch} />
+                  <Home
+                    resultSearch={resultSearch}
+                    setItemForPage={setItemForPage}
+                    itemForPage={itemForPage}
+                  />
                 }
               />
               <Route
@@ -81,16 +85,6 @@ function App() {
               <Route path="About" element={<About />} />
               <Route path="/*" element={<Navigate to="/404" />} />
             </Routes>
-          </Row>
-          <Row>
-            <Col md={4} className="d-flex justify-content-center offset-4">
-              <Button className="btn btn-primary">➖</Button>
-              <p>{item/6}</p>
-              <Button className="btn btn-primary" onClick={()=>setItem(item+1)}>➕</Button>
-            </Col>
-            <Col md={4} className="d-flex justify-content-end">
-            🟦
-            </Col>
           </Row>
         </Container>
       </main>

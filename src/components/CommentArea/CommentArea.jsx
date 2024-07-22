@@ -19,18 +19,15 @@ export const CommentArea = ({ asin }) => {
     setIsLoading(true);
     setComments([]);
     setComments(
-      await loadComments(asin)
-        .catch((e) => {
-          setInAlert({
-            isAlert: true,
-            heading: `Error ${e.message}`,
-            message: "Loading Error. Try Later",
-            variant: "danger",
-          })
-        })
-        .finally(
-          setInAlert(initialAlertState)
-        )
+      await loadComments(asin).catch((e) => {
+        setInAlert({
+          isAlert: true,
+          heading: `Error ${e.message}`,
+          message: "Loading Error. Try Later",
+          variant: "danger",
+        });
+        setTimeout(() => setInAlert(initialAlertState), 3000);
+      })
     );
     setIsLoading(false);
   };
@@ -39,7 +36,13 @@ export const CommentArea = ({ asin }) => {
   }, [asin]);
   return (
     <>
-      {inAlert.isAlert && <AlertCustom variant={inAlert.variant} heading={`Error ${inAlert.heading}`} message={inAlert.message} />}
+      {inAlert.isAlert && (
+        <AlertCustom
+          variant={inAlert.variant}
+          heading={inAlert.heading}
+          message={inAlert.message}
+        />
+      )}
       <AddComment asin={asin} handleSetComments={handleSetComments} />
       {isLoading && <Loading />}
       <CommentList comments={comments} handleSetComments={handleSetComments} />

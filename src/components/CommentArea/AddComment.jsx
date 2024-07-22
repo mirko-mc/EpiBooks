@@ -29,31 +29,30 @@ export const AddComment = ({ asin, handleSetComments }) => {
         heading: "Rate not valid",
         message: "Rate must be between 0 and 5",
         variant: "danger",
-      })
+      });
+      return setTimeout(() => setInAlert(initialAlertState), 3000);
     } else if (formValue.comment === "") {
       setInAlert({
         isAlert: true,
         heading: "Comment is empty",
         message: "You forgot to enter the comment.",
         variant: "danger",
-      })
+      });
+      return setTimeout(() => setInAlert(initialAlertState), 3000);
     } else {
-    setIsFetching(true);
-    await saveComment(formValue)
-      .catch((e) => {
+      setIsFetching(true);
+      await saveComment(formValue).catch((e) => {
         setInAlert({
           isAlert: true,
           heading: `Error ${e.message}`,
           message: "Try Later",
           variant: "danger",
-        })
-      })
-      .finally(
-        setInAlert(initialAlertState)
-      );
-    setFormValue(initialFormState);
-    await handleSetComments(asin);
-    setIsFetching(false);
+        });
+      });
+      setTimeout(() => setInAlert(initialAlertState), 3000);
+      setFormValue(initialFormState);
+      await handleSetComments(asin);
+      setIsFetching(false);
     }
   };
   const handleChange = (event) => {
@@ -86,7 +85,13 @@ export const AddComment = ({ asin, handleSetComments }) => {
           value={formValue.comment}
         />
       </Form.Group>
-      {inAlert.isAlert && <AlertCustom variant={inAlert.variant} heading={inAlert.heading} message={inAlert.message} />}
+      {inAlert.isAlert && (
+        <AlertCustom
+          variant={inAlert.variant}
+          heading={inAlert.heading}
+          message={inAlert.message}
+        />
+      )}
       <Button
         className="w-25"
         variant="primary"
