@@ -1,6 +1,6 @@
 # EpiBooks
 
-EpiBooks è il mio progetto di React sviluppato durante il corso di full-stack development presso la Strive School.
+EpiBooks è il mio progetto di React sviluppato durante il corso di full-stack development presso Epicode.
 
 L'applicazione permette di visualizzare una lista di libri, filtrarli in base al titolo e leggere le relative recensioni. Inoltre, è possibile lasciare una recensione su un libro.
 
