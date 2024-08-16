@@ -2,7 +2,7 @@
 
 EpiBooks è il mio progetto di React sviluppato durante il corso di full-stack development presso Epicode.
 
-L'applicazione permette di visualizzare una lista di libri, filtrarli in base al titolo e leggere le relative recensioni. Inoltre, è possibile lasciare una recensione su un libro.
+L'applicazione permette di visualizzare una lista di libri in base alla categoria selezionata, filtrarli in base al titolo e leggere le relative recensioni. Inoltre, è possibile lasciare una recensione su un libro o aggiungerlo/rimuoverlo dal carrello.
 
 L'applicazione utilizza React, React-Bootstrap e React-Router-Dom e si interfaccia con l'API di Strive School per recuperare le informazioni sui libri e le recensioni.
 
