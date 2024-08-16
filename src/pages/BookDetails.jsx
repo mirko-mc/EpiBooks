@@ -10,7 +10,6 @@ export const BookDetails = ({ category }) => {
   const navigate = useNavigate();
   const { asin } = useParams();
   const book = category.find((book) => book.asin === asin);
-  console.log(asin);
   useEffect(() => {
     if (!book) navigate("/404");
     else loadComments(asin);
@@ -34,7 +33,6 @@ export const BookDetails = ({ category }) => {
               <b>DESCRIPTION :</b>{" "}
             </Card.Subtitle>
             <Card.Text>
-              <p>
                 Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla
                 ac ante aliquam, cursus purus sit amet, eleifend turpis. Etiam
                 sit amet nibh at orci bibendum laoreet ac vitae felis.
@@ -44,7 +42,6 @@ export const BookDetails = ({ category }) => {
                 Vestibulum ut mattis tortor, at varius orci. Suspendisse a neque
                 eget risus commodo suscipit eget vel urna. Sed et tincidunt est.
                 Ut venenatis lorem ac tellus tincidunt, a bibendum dolor auctor.
-              </p>
             </Card.Text>
             <Card.Text>
               <b>PRICE :</b> {book.price}€
